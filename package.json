@@ -1,0 +1,38 @@
+{
+  "name": "rtk1postgres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "engines": {
+    "node": "18.x",
+    "npx": "9.x"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "pro": "tsc && node dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["TypeScript", "TypeORM", "PostgreSQL", "Express", "REST API"],
+  "author": "Craig Johnson",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^20.3.1",
+    "@types/pg": "^8.10.2",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}
+
+

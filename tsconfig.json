@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "module": "commonjs",
+        "target": "es2020",
+        "lib": ["dom", "esnext"],
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+    "exclude": ["node_modules"],
+    "include": ["src"]
+}
+
+
