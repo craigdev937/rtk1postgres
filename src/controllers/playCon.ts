@@ -1,11 +1,56 @@
 import express from "express";
 import { Players } from "../models/Players";
+import { dBase } from "../DataSource";
 
 class PlayerClass {
     Create: express.RequestHandler =
     async (req, res, next) => {
         try {
-            const player: Players = new Players();
+            const newPlayer = dBase
+                .getRepository(Players)
+                .create(req.body);
+            const player = await dBase
+                .getRepository(Players)
+                .save(newPlayer);
+            res.json(player);
+        } catch (error: any) {
+            res.status(500).json(error.message);
+            next(error);
+        }
+    };
+
+    FetchAll: express.RequestHandler =
+    async (req, res, next) => {
+        try {
+            const players = await dBase
+                .getRepository(Players)
+                .find()
+            res.json(players);
+        } catch (error: any) {
+            res.status(500).json(error.message);
+            next(error);
+        }
+    };
+
+    GetOne: express.RequestHandler =
+    async (req, res, next) => {
+        try {
+            const player = await dBase
+            .getRepository(Players)
+            .findOneBy({ id: req.params.id })
+            res.json(player);
+        } catch (error: any) {
+            res.status(500).json(error.message);
+            next(error);
+        }
+    };
+
+    Update: express.RequestHandler =
+    async (req, res, next) => {
+        try {
+            const player = await dBase.getRepository(Players)
+            .findOneOrFail({
+                where: { id: req.params.id }});
             player.first = req.body.first;
             player.last = req.body.last;
             player.age = req.body.age;
@@ -19,12 +64,13 @@ class PlayerClass {
         }
     };
 
-    FetchAll: express.RequestHandler =
+    Delete: express.RequestHandler =
     async (req, res, next) => {
         try {
-            await Players.find()
-            .then((players) => res.status(201)
-            .json(players));
+            const player = await dBase
+                .getRepository(Players)
+                .delete(req.params.id);
+            res.json(player);
         } catch (error: any) {
             res.status(500).json(error.message);
             next(error);
